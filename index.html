@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Compiler</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            color:white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .created-by {
+            font-size: 16px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark background */
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Box shadow */
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: url(ai_model04.jpg);
+            backdrop-filter: blur(2px);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .editor-container {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 80px; /* Ensure space for the created by text */
+        }
+
+        .editor, .preview {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px rgba(0,0,0.1);
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 10px solid red;
+        }
+
+        .editor {
+            height: 400px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: none;
+            font-weight: bold;
+        }
+
+        .preview {
+            height: 400px;
+            overflow-y: auto;
+            font-weight: bold;
+        }
+
+        /* Media Query for smaller devices */
+        @media (max-width: 768px) {
+            .editor-container {
+                width: 95%;
+            }
+
+            .editor {
+                height: 300px;
+                font-size: 14px;
+            }
+
+            .preview {
+                height: 400px;
+            }
+
+            h1 {
+                font-size: 35px;
+            }
+
+            .created-by {
+                font-size: 14px;
+            }
+        }
+
+        /* Further adjustments for very small screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .editor {
+                height: 250px;
+                font-size: 13px;
+            }
+
+            .preview {
+                height: 300px;
+            }
+
+            .created-by {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="created-by">Created by Rohith Tompe</div><br><br>
+    <h1>Simple HTML Editor</h1>
+    <div class="editor-container">
+        <textarea id="html-editor" class="editor" placeholder="Write your entire HTML code here..."></textarea>
+        <iframe id="preview" class="preview"></iframe>
+    </div>
+
+    <script>
+        const editor = document.getElementById('html-editor');
+        const preview = document.getElementById('preview').contentWindow.document;
+
+        // Update the preview as the user types in the editor
+        editor.addEventListener('input', function () {
+            preview.open();
+            preview.write(editor.value);
+            preview.close();
+        });
+
+        // Initialize the editor with a basic HTML structure
+        editor.value = `<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+                            
+    </body>
+</html>`;
+
+        preview.open();
+        preview.write(editor.value);
+        preview.close();
+    </script>
+</body>
+</html>
